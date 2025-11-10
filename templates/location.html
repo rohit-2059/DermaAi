@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+    />
+    <title>Nearby Dermatologists</title>
+    <style>
+      /* Updated Header Styling to Match Main Page */
+
+      :root {
+        --navy-900: #050d16;
+        --navy-800: #0d1b2a;
+        --navy-700: #1a2a3a;
+        --neon-blue: #00ffff;
+        --text-color: #e0f0ff;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: var(--navy-900);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      header h1 {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 700;
+        margin-left: 20px;
+      }
+
+      /* Enhanced Navigation Styles */
+      nav {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 255, 0.1) 0%,
+          rgba(19, 38, 57, 0.95) 50%,
+          rgba(5, 13, 22, 0.98) 100%
+        );
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        padding: 8px 18px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        height: 44px;
+      }
+
+      nav::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      nav:hover::before {
+        left: 100%;
+      }
+
+      nav:hover {
+        border-color: rgba(0, 255, 255, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 255, 255, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+      }
+
+      /* Navigation List - Better Alignment */
+      nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      nav ul li {
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Hamburger Icon */
+      .hamburger {
+        display: none; /* Hide by default */
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .hamburger div {
+        width: 30px;
+        height: 4px;
+        background-color: #fff;
+        transition: transform 0.3s ease;
+      }
+
+      /* Enhanced Mobile Responsive Design */
+      @media screen and (max-width: 768px) {
+        header {
+          padding: 10px 0;
+          height: 60px;
+        }
+
+        .header-logo {
+          margin-left: 20px;
+        }
+
+        .header-logo h1 {
+          font-size: 24px;
+        }
+
+        .header-logo img {
+          width: 60px;
+          height: 40px;
+        }
+
+        /* Show the hamburger menu */
+        .hamburger {
+          display: flex;
+          margin-right: 20px;
+        }
+
+        .hamburger div {
+          background: linear-gradient(45deg, var(--neon-blue), #ffffff);
+          box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Hide the navigation items initially */
+        nav ul {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          right: 20px;
+          background: linear-gradient(
+            135deg,
+            rgba(5, 13, 22, 0.95) 0%,
+            rgba(19, 38, 57, 0.9) 100%
+          );
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(0, 255, 255, 0.2);
+          border-radius: 15px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+            0 4px 16px rgba(0, 255, 255, 0.1);
+          padding: 25px;
+          width: 220px;
+          z-index: 1000;
+        }
+
+        /* Show the navigation items when the menu is toggled */
+        nav ul.active {
+          display: flex;
+          animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        nav ul li {
+          margin: 12px 0;
+        }
+
+        nav a {
+          margin: 0;
+          padding: 10px 16px;
+          display: block;
+          text-align: center;
+          border-radius: 8px;
+          font-size: 14px;
+          min-height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .container {
+          margin-top: 80px;
+        }
+      }
+
+      /* Enhanced Navigation Links - Smaller & Better Aligned */
+      nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 14px;
+        margin: 0 15px;
+        font-weight: 500;
+        position: relative;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: 0.3px;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 32px;
+      }
+
+      nav a:hover {
+        color: var(--neon-blue);
+        background: rgba(0, 255, 255, 0.1);
+        transform: translateY(-1px) scale(1.02);
+        text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+      }
+
+      nav a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(0, 255, 255, 0.1),
+          transparent
+        );
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      nav a:hover::before {
+        opacity: 1;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--neon-blue),
+          transparent
+        );
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.4s ease;
+        box-shadow: 0 0 10px var(--neon-blue);
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* Enhanced Header Container */
+      header {
+        padding: 15px 0;
+        height: 70px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(
+          180deg,
+          rgba(5, 13, 22, 0.95) 0%,
+          rgba(19, 38, 57, 0.9) 100%
+        );
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+          0 1px 0 rgba(0, 255, 255, 0.1) inset;
+        transition: all 0.3s ease;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--neon-blue),
+          transparent
+        );
+        opacity: 0.6;
+      }
+
+      .header-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-left: 40px;
+        position: relative;
+        padding: 10px 15px;
+        border-radius: 12px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-logo:hover {
+        background: rgba(0, 255, 255, 0.05);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1);
+      }
+
+      .header-logo img {
+        width: 85px;
+        height: 55px;
+        object-fit: cover;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-right: 0;
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+        border-radius: 8px;
+      }
+
+      .header-logo:hover img {
+        transform: scale(1.08) rotate(2deg);
+        filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+      }
+
+      .header-logo h1 {
+        color: var(--text-color);
+        font-size: 32px;
+        font-weight: 700;
+        margin-left: -20px;
+        background: linear-gradient(135deg, var(--neon-blue), #ffffff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        transition: all 0.3s ease;
+        letter-spacing: -1px;
+      }
+
+      .header-logo:hover h1 {
+        transform: translateX(5px);
+        text-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+      }
+      /* Professional Table Styling */
+      #hospital-container {
+        margin: 30px auto;
+        max-width: 90%;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: #1a2a3a;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      th {
+        background: linear-gradient(to right, #0077b6, #00b4d8);
+        color: white;
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+        border-bottom: 3px solid #0096c7;
+      }
+
+      td {
+        padding: 12px;
+        color: #e0f0ff;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Alternating Row Colors */
+      tbody tr:nth-child(odd) {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      /* Image Styling */
+      td img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Make Website Links White */
+      td a {
+        color: white;
+        font-weight: bold;
+        text-decoration: underline blue;
+      }
+
+      td a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive Table */
+      @media (max-width: 768px) {
+        table {
+          font-size: 14px;
+        }
+        td img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <img src="../static/images/D.png" alt="Photo" />
+        <h1>ermaSense.ai</h1>
+      </div>
+      <nav>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul>
+          <li><a href="/">Predict</a></li>
+          <li><a href="/location">Search Dermatologists</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <br /><br />
+      <h1 class="text-center" style="font-size: 2rem; margin-top: 30px">
+        Find Nearby Dermatologists
+      </h1>
+      <div
+        id="map"
+        style="height: 400px; width: 50%; margin: auto; margin-top: 20px"
+      ></div>
+
+      <div class="form-group">
+        <label for="location">Enter Location</label>
+        <br /><br />
+        <input
+          type="text"
+          class="form-control"
+          id="autocomplete"
+          placeholder="Enter Location"
+        />
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="radius">Select Search Radius:</label>
+        <br />
+        <select id="radius" class="form-control">
+          <option value="1000">1 km</option>
+          <option value="2000">2 km</option>
+          <option value="5000" selected>5 km</option>
+          <option value="10000">10 km</option>
+          <option value="15000">15 km</option>
+          <option value="20000">20 km</option>
+          <option value="25000">25 km</option>
+          <option value="50000">50 km</option>
+        </select>
+      </div>
+      <br /><br />
+
+      <div id="hospital-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Photo</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Rating</th>
+              <th>Website</th>
+            </tr>
+          </thead>
+          <tbody id="places"></tbody>
+        </table>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary" id="prevBtn" disabled>
+          ← Previous
+        </button>
+        <button class="btn btn-primary" id="nextBtn">Next →</button>
+      </div>
+    </div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf_ZJQORngO5oaDc2fT_TgAFUapu04hXI&libraries=places&callback=initMap"
+      async
+      defer
+    ></script>
+    <script>
+      let map, service, autocomplete;
+      let hospitals = [];
+      let currentIndex = 0;
+      const hospitalsPerPage = 5;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 28.6139, lng: 77.209 },
+          zoom: 12,
+        });
+
+        autocomplete = new google.maps.places.Autocomplete(
+          document.getElementById("autocomplete"),
+          { types: ["geocode"] }
+        );
+
+        autocomplete.addListener("place_changed", searchNearbyPlaces);
+        document.getElementById("radius").onchange = searchNearbyPlaces;
+
+        document
+          .getElementById("prevBtn")
+          .addEventListener("click", () => showHospitals(-1));
+        document
+          .getElementById("nextBtn")
+          .addEventListener("click", () => showHospitals(1));
+      }
+
+      function searchNearbyPlaces() {
+        document.querySelector("#places").innerHTML = "";
+        hospitals = [];
+        currentIndex = 0;
+
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          alert("Please select a valid location from the list.");
+          return;
+        }
+
+        let radius = document.getElementById("radius").value;
+        map.setCenter(place.geometry.location);
+        map.setZoom(14);
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(
+          {
+            location: place.geometry.location,
+            radius: radius,
+            keyword: "dermatologist",
+          },
+          callback
+        );
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          hospitals = results;
+          showHospitals(0);
+        } else {
+          alert(
+            "No dermatologists found nearby. Try increasing the search radius."
+          );
+        }
+      }
+
+      function showHospitals(direction) {
+        currentIndex += direction * hospitalsPerPage;
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex >= hospitals.length)
+          currentIndex = Math.max(0, hospitals.length - hospitalsPerPage);
+
+        document.querySelector("#places").innerHTML = "";
+        let end = Math.min(currentIndex + hospitalsPerPage, hospitals.length);
+
+        for (let i = currentIndex; i < end; i++) {
+          getPlaceDetails(hospitals[i]);
+        }
+
+        document.getElementById("prevBtn").disabled = currentIndex === 0;
+        document.getElementById("nextBtn").disabled =
+          currentIndex + hospitalsPerPage >= hospitals.length;
+      }
+
+      function getPlaceDetails(place) {
+        service.getDetails(
+          { placeId: place.place_id },
+          function (details, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              createTableRow(details);
+            }
+          }
+        );
+      }
+
+      function createTableRow(place) {
+        let tableBody = document.querySelector("#places");
+        let row = tableBody.insertRow();
+
+        row.insertCell(0).innerText = place.name;
+        let photoUrl = place.photos
+          ? place.photos[0].getUrl()
+          : "https://via.placeholder.com/150";
+        row.insertCell(
+          1
+        ).innerHTML = `<img width="100" height="100" src="${photoUrl}" alt="🚫No Photo"/>`;
+        row.insertCell(2).innerText =
+          place.formatted_phone_number || "Not available";
+        row.insertCell(3).innerText =
+          place.formatted_address || "Not available";
+        row.insertCell(4).innerText = place.rating
+          ? place.rating + " ⭐"
+          : "No rating";
+        row.insertCell(5).innerHTML = place.website
+          ? `<a href="${place.website}" target="_blank">Visit</a>`
+          : "Not available";
+      }
+    </script>
+  </body>
+</html>
