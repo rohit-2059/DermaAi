@@ -1,6 +1,6 @@
 # 🩺 DermaSense.ai - Skin Disease Detection System
 
-An AI-powered web application that detects and classifies skin diseases from uploaded images using deep learning and computer vision.
+An AI-powered web application that detects and classifies skin diseases from uploaded images using deep learning.
 
 ## 🌟 Features
 
