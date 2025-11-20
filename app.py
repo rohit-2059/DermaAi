@@ -4,6 +4,7 @@ import time
 from werkzeug.utils import secure_filename
 from flask import Flask, request, jsonify, render_template, redirect, url_for, send_from_directory
 from flask_cors import CORS  # Add CORS support
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications import MobileNetV2
@@ -12,6 +13,13 @@ import h5py
 from flask_pymongo import PyMongo
 from twilio.rest import Client  # Twilio SMS Integration
 from dotenv import load_dotenv  # Load environment variables
+import gc  # Garbage collector for memory management
+
+# Optimize TensorFlow for low memory
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress TF warnings
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -525,9 +533,14 @@ def predict():
         # Preprocess and predict
         print("🔄 Starting prediction...")
         img_array = preprocess_image(filepath)
-        predictions = model.predict(img_array)
+        predictions = model.predict(img_array, verbose=0)  # Disable verbose output
         class_index = np.argmax(predictions)
         confidence = float(np.max(predictions)) * 100
+
+        # Clear memory after prediction
+        del img_array, predictions
+        gc.collect()
+        tf.keras.backend.clear_session()
 
         # Get Disease Name
         predicted_disease = class_labels[class_index]
@@ -558,6 +571,9 @@ def predict():
         print(f"❌ Prediction error: {str(e)}")
         import traceback
         traceback.print_exc()
+        # Clear memory on error
+        gc.collect()
+        tf.keras.backend.clear_session()
         return jsonify({"error": f"Prediction failed: {str(e)}"}), 500
 
 if __name__ == "__main__":
