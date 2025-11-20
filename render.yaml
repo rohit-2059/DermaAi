@@ -5,6 +5,7 @@ services:
     plan: free
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 120 --max-requests 10 --max-requests-jitter 5 --preload
+    envVars:
       - key: TWILIO_SID
         sync: false
       - key: TWILIO_AUTH_TOKEN
