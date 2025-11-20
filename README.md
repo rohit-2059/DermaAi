@@ -6,11 +6,17 @@ An AI-powered web application that detects and classifies skin diseases from upl
 
 - **🔍 AI-Powered Detection**: Identifies 24 different skin conditions with confidence scores
 - **📱 SMS Notifications**: Sends analysis results via SMS using Twilio integration
+- **📍 Find Nearby Dermatologists**: Locate dermatologists near you with Google Maps integration
+  - Search by your current location or any address
+  - Click directly on the map to select location
+  - Adjustable search radius (1km to 50km)
+  - View clinic details, ratings, photos, and contact information
+  - Get directions to dermatologist clinics
 - **🖼️ Image Upload**: Supports multiple image formats (PNG, JPG, JPEG, GIF, BMP)
 - **📊 Detailed Reports**: Provides disease description, causes, and treatment recommendations
 - **📝 Contact System**: Built-in contact form with MongoDB storage
 - **🔐 User Authentication**: Separate authentication microservice
-- **💻 Web Interface**: Clean, responsive web interface
+- **💻 Web Interface**: Clean, responsive web interface with modern UI/UX
 
 ## 🎯 Supported Skin Conditions
 
@@ -43,11 +49,13 @@ The AI model can detect 24 different skin conditions:
 ### Technology Stack
 
 - **Backend**: Python Flask, TensorFlow/Keras
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
 - **Database**: MongoDB (for contact forms)
 - **AI Model**: MobileNetV2 Transfer Learning
 - **SMS Service**: Twilio API
-- **Image Processing**: PIL/Pillow, OpenCV
+- **Maps Integration**: Google Maps API, Google Places API
+- **Image Processing**: PIL/Pillow, NumPy
+- **Animations**: Three.js for background effects
 
 ## 🚀 Installation & Setup
 
@@ -81,14 +89,17 @@ mongod --dbpath /path/to/your/db
 
 ### 4. Twilio Configuration
 
-Update Twilio credentials in `app.py`:
+Create a `.env` file in the root directory:
 
-```python
-TWILIO_SID = "your_account_sid"
-TWILIO_AUTH_TOKEN = "your_auth_token"
-TWILIO_PHONE_NUMBER = "your_twilio_number"
-YOUR_PHONE_NUMBER = "your_verified_number"
+```env
+TWILIO_SID=your_account_sid
+TWILIO_AUTH_TOKEN=your_auth_token
+TWILIO_PHONE_NUMBER=+1234567890
+YOUR_PHONE_NUMBER=+919876543210
+MONGO_URI=mongodb://localhost:27017/contactDB
 ```
+
+**Note**: For Twilio trial accounts, you must verify phone numbers at [Twilio Console](https://console.twilio.com/us1/develop/phone-numbers/manage/verified)
 
 ### 5. Contact Service (Optional)
 
@@ -122,7 +133,7 @@ The application will be available at: `http://localhost:5000`
 - `/predict` - Image upload and prediction API
 - `/send_sms` - SMS notification service
 - `/contact` - Contact form
-- `/location` - Location page
+- `/location` - Find nearby dermatologists with Google Maps
 - `/test_sms` - SMS functionality testing
 
 ## 📱 Usage
@@ -131,20 +142,40 @@ The application will be available at: `http://localhost:5000`
 
 1. Navigate to `http://localhost:5000`
 2. Click "Choose File" and select a skin image
-3. Click "Analyze Image"
-4. View prediction results with confidence score
+3. Optionally enter your phone number for SMS results
+4. Click "Analyze Image"
+5. View prediction results with confidence score, description, causes, and treatment
 
-### 2. SMS Notifications
+### 2. Find Nearby Dermatologists
 
-1. After analysis, enter your phone number
-2. Click "Send SMS Report"
-3. Receive detailed analysis via SMS
+1. Navigate to `/location` or click "Find Dermatologist" in the header
+2. **Option A - Search by typing**: Enter your location in the search box
+3. **Option B - Click on map**: Simply click anywhere on the map to select a location
+4. Select search radius (1km to 50km)
+5. Click "Search Dermatologists"
+6. View results with:
+   - Dermatologist name and photo
+   - Phone number and address
+   - Google ratings and reviews
+   - Website links
+   - Direct location on map
+7. Browse through paginated results (5 per page)
 
-### 3. Contact Form
+### 3. SMS Notifications
+
+1. After skin analysis, SMS is automatically sent to the phone number you provided
+2. Receive detailed analysis report including:
+   - Disease detected
+   - Brief description
+   - Suggested treatment
+   - Disclaimer to consult a professional
+3. Works only with verified phone numbers (Twilio trial account)
+
+### 4. Contact Form
 
 1. Navigate to `/contact`
-2. Fill out the contact form
-3. Messages are stored in MongoDB
+2. Fill out the contact form with your query
+3. Messages are stored in MongoDB for admin review
 
 ## 🧠 Model Details
 
@@ -228,6 +259,8 @@ This application is for **educational and research purposes only**. It should **
 - No personal medical data is permanently stored
 - SMS messages contain AI predictions only
 - Contact form data is stored in local MongoDB
+- Google Maps API used only for location services (no tracking)
+- Phone numbers are not stored permanently
 
 ## 🐛 Troubleshooting
 
@@ -305,6 +338,30 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Model Training Guide](model.py)
 - [API Documentation](#available-endpoints)
 - [SMS Testing Page](http://localhost:5000/test_sms)
+- [Find Dermatologists](http://localhost:5000/location)
 - [Contact Form](http://localhost:5000/contact)
+- [Twilio Setup Guide](TWILIO_SETUP_GUIDE.md)
+- [Deployment Guide](DEPLOYMENT_CHECKLIST.md)
+
+### 🌐 Live Demo
+
+**Deployed on Railway**: [Your Railway URL]
+
+### 📸 Screenshots
+
+**Main Prediction Interface**
+- Upload skin images for AI analysis
+- Get instant disease predictions with confidence scores
+
+**Dermatologist Locator**
+- Interactive Google Maps integration
+- Click-to-select location feature
+- Detailed clinic information with ratings
+
+**SMS Notification System**
+- Automatic SMS reports after analysis
+- Twilio-powered messaging
+
+---
 
 **Remember**: This AI system provides suggestions only. Always consult healthcare professionals for proper medical diagnosis and treatment! 🏥
