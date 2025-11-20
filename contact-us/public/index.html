@@ -212,12 +212,35 @@
             transition: transform 0.3s ease;
         }
 
-        /* Media Query for smaller screens */
+        /* Enhanced Mobile Responsive Design */
         @media screen and (max-width: 768px) {
+            header {
+                padding: 10px 0;
+                height: 60px;
+            }
+
+            .header-logo {
+                margin-left: 20px;
+            }
+
+            .header-logo h1 {
+                font-size: 24px;
+            }
+
+            .header-logo img {
+                width: 60px;
+                height: 40px;
+            }
 
             /* Show the hamburger menu */
             .hamburger {
                 display: flex;
+                margin-right: 20px;
+            }
+
+            .hamburger div {
+                background: linear-gradient(45deg, var(--neon-blue), #ffffff);
+                box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
             }
 
             /* Hide the navigation items initially */
@@ -225,67 +248,134 @@
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 60px;
-                /* Adjust according to your header height */
+                top: 70px;
                 right: 20px;
-                background-color: #00d2ff;
-                border-radius: 10px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-                padding: 20px;
-                width: 200px;
+                background: linear-gradient(135deg,
+                        rgba(5, 13, 22, 0.95) 0%,
+                        rgba(19, 38, 57, 0.9) 100%);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(0, 255, 255, 0.2);
+                border-radius: 15px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                    0 4px 16px rgba(0, 255, 255, 0.1);
+                padding: 25px;
+                width: 220px;
+                z-index: 1000;
             }
 
             /* Show the navigation items when the menu is toggled */
             nav ul.active {
                 display: flex;
+                animation: slideIn 0.3s ease-out;
+            }
+
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
 
             nav ul li {
-                margin: 15px 0;
+                margin: 12px 0;
+            }
+
+            nav a {
+                margin: 0;
+                padding: 10px 16px;
+                display: block;
+                text-align: center;
+                border-radius: 8px;
+                font-size: 14px;
+                min-height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container {
+                margin-top: 80px;
             }
         }
 
-        /* Additional Styling for the Hamburger Menu */
+        /* Enhanced Navigation Links - Smaller & Better Aligned */
         nav a {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
-            font-size: 16px;
-            margin: 0 20px;
+            font-size: 14px;
+            margin: 0 15px;
             font-weight: 500;
             position: relative;
-            transition: all 0.3s ease-in-out;
-            /* Smooth transition on hover */
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 32px;
         }
 
         nav a:hover {
-            transform: translateY(-5px);
-            /* Slight upward movement on hover */
+            color: var(--neon-blue);
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-1px) scale(1.02);
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+        }
+
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(0, 255, 255, 0.1),
+                    transparent);
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            opacity: 1;
         }
 
         nav a::after {
-            content: '';
+            content: "";
             position: absolute;
-            width: 100%;
+            width: 0;
             height: 2px;
-            background-color: #fff;
-            /* Neon Pink underline */
-            bottom: -5px;
-            left: 0;
-            transform: scaleX(0);
-            transition: transform 0.3s ease-in-out;
-            /* Smooth scaling effect */
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--neon-blue),
+                    transparent);
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px var(--neon-blue);
         }
 
         nav a:hover::after {
-            transform: scaleX(1);
-            /* Underline appears on hover */
+            width: 100%;
         }
 
 
-        /* Add some padding to the nav container to make it look spacious */
+        /* Enhanced Header Container */
         header {
-            padding: 10px 0;
-            height: 51px;
+            padding: 15px 0;
+            height: 70px;
             position: fixed;
             top: 0;
             left: 0;
@@ -295,7 +385,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(34, 129, 198, 0.2);
+            background: linear-gradient(180deg,
+                    rgba(5, 13, 22, 0.95) 0%,
+                    rgba(19, 38, 57, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+                0 1px 0 rgba(0, 255, 255, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--neon-blue),
+                    transparent);
+            opacity: 0.6;
         }
 
         .header-logo {
@@ -303,32 +414,51 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            margin-left: 3vh;
+            margin-left: 40px;
+            position: relative;
+            padding: 10px 15px;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-logo:hover {
+            background: rgba(0, 255, 255, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1);
         }
 
         .header-logo img {
-            width: 90px;
-            /* Set the size of the image */
-            height: 50px;
-            /* Set the size of the image */
+            width: 85px;
+            height: 55px;
             object-fit: cover;
-            /* Ensure the image covers the circle */
-            transition: transform 0.3s ease-in-out;
-            /* Smooth scaling effect */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-right: 0;
-            margin-bottom: 3vh;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+            border-radius: 8px;
         }
 
         .header-logo:hover img {
-            transform: scale(1.1);
-            /* Slightly enlarge the image on hover */
+            transform: scale(1.08) rotate(2deg);
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
         }
 
         .header-logo h1 {
-            color: #fff;
-            font-size: 28px;
+            color: var(--text-color);
+            font-size: 32px;
             font-weight: 700;
-            margin-left: -25px;
+            margin-left: -20px;
+            background: linear-gradient(135deg, var(--neon-blue), #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            letter-spacing: -1px;
+        }
+
+        .header-logo:hover h1 {
+            transform: translateX(5px);
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
         }
 
 
@@ -523,9 +653,9 @@
         <!-- Left Section -->
         <div class="left-section">
             <h1>Connect with Our Team of Experts</h1>
-            <p>Have questions or need assistance? Our team of experts is here to help — reach out to us anytime!</p>
-            <p><strong>Phone:</strong> +91-9817245943</p>
-            <p><strong>Email:</strong> ridhbht4@gmail.com</p>
+            <p>Have questions or need assistance? Our team of experts is here to help reach out to us anytime!</p>
+            <p><strong>Phone:</strong> +91-8302725007</p>
+            <p><strong>Email:</strong> rohit.khandelwal.2059@gmail.com</p>
 
         </div>
 
@@ -569,7 +699,7 @@
             }
 
             try {
-                const response = await fetch("http://localhost:5000/api/contact", {
+                const response = await fetch("/api/contact", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -588,6 +718,44 @@
             } catch (error) {
                 alert("Failed to submit the form. Please try again later.");
             }
+        });
+
+        // Toggle mobile menu function
+        function toggleMenu() {
+            const navList = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+
+            navList.classList.toggle('active');
+            hamburger.classList.toggle('active');
+
+            // Animate hamburger lines
+            if (navList.classList.contains('active')) {
+                hamburger.children[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                hamburger.children[1].style.opacity = '0';
+                hamburger.children[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                hamburger.children[0].style.transform = 'none';
+                hamburger.children[1].style.opacity = '1';
+                hamburger.children[2].style.transform = 'none';
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    const navList = document.querySelector('nav ul');
+                    const hamburger = document.querySelector('.hamburger');
+                    if (navList.classList.contains('active')) {
+                        navList.classList.remove('active');
+                        hamburger.classList.remove('active');
+                        hamburger.children[0].style.transform = 'none';
+                        hamburger.children[1].style.opacity = '1';
+                        hamburger.children[2].style.transform = 'none';
+                    }
+                });
+            });
         });
     </script>
 

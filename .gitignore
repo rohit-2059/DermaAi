@@ -37,6 +37,10 @@ instance/
 .env.local
 .env.production
 .env.staging
+*.env
+
+# Twilio credentials
+twilio_credentials.txt
 
 # Database
 *.db
@@ -78,5 +82,5 @@ Thumbs.db
 # *.h5
 # *.hdf5
 
-# Twilio credentials (if using .env)
-.env.example
+# Keep .env.example for reference
+!.env.example

@@ -57,9 +57,9 @@ def send_sms(message_body, to_phone=None):
         print(f"📤 Sending SMS to {to_phone}")
         print(f"📝 Message content: {message_body[:100]}...")
         
-        # Check if using demo credentials
-        if TWILIO_SID.startswith("YOUR_ACTUAL"):
-            print("🧪 DEMO MODE: SMS would be sent with real Twilio credentials")
+        # Check if client is available
+        if client is None:
+            print("🧪 DEMO MODE: Twilio client not initialized")
             return "DEMO_SMS_SUCCESS"
         
         print(f"📱 Attempting to send SMS from {TWILIO_PHONE_NUMBER} to {to_phone}")
@@ -561,4 +561,6 @@ def predict():
         return jsonify({"error": f"Prediction failed: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
+

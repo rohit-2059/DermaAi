@@ -10,15 +10,6 @@
     />
     <title>Nearby Dermatologists</title>
     <style>
-      /* Updated Header Styling to Match Main Page */
-
-      :root {
-        --navy-900: #050d16;
-        --navy-800: #0d1b2a;
-        --navy-700: #1a2a3a;
-        --neon-blue: #00ffff;
-        --text-color: #e0f0ff;
-      }
       body {
         font-family: "Arial", sans-serif;
         background-color: var(--navy-900);
@@ -27,352 +18,7 @@
         padding: 0;
         line-height: 1.6;
       }
-      header h1 {
-        color: #fff;
-        font-size: 28px;
-        font-weight: 700;
-        margin-left: 20px;
-      }
 
-      /* Enhanced Navigation Styles */
-      nav {
-        background: linear-gradient(
-          135deg,
-          rgba(0, 255, 255, 0.1) 0%,
-          rgba(19, 38, 57, 0.95) 50%,
-          rgba(5, 13, 22, 0.98) 100%
-        );
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(0, 255, 255, 0.2);
-        padding: 8px 18px;
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 30px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        height: 44px;
-      }
-
-      nav::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(0, 255, 255, 0.1),
-          transparent
-        );
-        transition: left 0.6s ease;
-      }
-
-      nav:hover::before {
-        left: 100%;
-      }
-
-      nav:hover {
-        border-color: rgba(0, 255, 255, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 255, 255, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-      }
-
-      /* Navigation List - Better Alignment */
-      nav ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      nav ul li {
-        margin: 0;
-        display: flex;
-        align-items: center;
-      }
-
-      /* Hamburger Icon */
-      .hamburger {
-        display: none; /* Hide by default */
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-      }
-
-      .hamburger div {
-        width: 30px;
-        height: 4px;
-        background-color: #fff;
-        transition: transform 0.3s ease;
-      }
-
-      /* Enhanced Mobile Responsive Design */
-      @media screen and (max-width: 768px) {
-        header {
-          padding: 10px 0;
-          height: 60px;
-        }
-
-        .header-logo {
-          margin-left: 20px;
-        }
-
-        .header-logo h1 {
-          font-size: 24px;
-        }
-
-        .header-logo img {
-          width: 60px;
-          height: 40px;
-        }
-
-        /* Show the hamburger menu */
-        .hamburger {
-          display: flex;
-          margin-right: 20px;
-        }
-
-        .hamburger div {
-          background: linear-gradient(45deg, var(--neon-blue), #ffffff);
-          box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-        }
-
-        /* Hide the navigation items initially */
-        nav ul {
-          display: none;
-          flex-direction: column;
-          position: absolute;
-          top: 70px;
-          right: 20px;
-          background: linear-gradient(
-            135deg,
-            rgba(5, 13, 22, 0.95) 0%,
-            rgba(19, 38, 57, 0.9) 100%
-          );
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(0, 255, 255, 0.2);
-          border-radius: 15px;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-            0 4px 16px rgba(0, 255, 255, 0.1);
-          padding: 25px;
-          width: 220px;
-          z-index: 1000;
-        }
-
-        /* Show the navigation items when the menu is toggled */
-        nav ul.active {
-          display: flex;
-          animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        nav ul li {
-          margin: 12px 0;
-        }
-
-        nav a {
-          margin: 0;
-          padding: 10px 16px;
-          display: block;
-          text-align: center;
-          border-radius: 8px;
-          font-size: 14px;
-          min-height: 32px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .container {
-          margin-top: 80px;
-        }
-      }
-
-      /* Enhanced Navigation Links - Smaller & Better Aligned */
-      nav a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-size: 14px;
-        margin: 0 15px;
-        font-weight: 500;
-        position: relative;
-        padding: 6px 12px;
-        border-radius: 6px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        letter-spacing: 0.3px;
-        text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-        white-space: nowrap;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 32px;
-      }
-
-      nav a:hover {
-        color: var(--neon-blue);
-        background: rgba(0, 255, 255, 0.1);
-        transform: translateY(-1px) scale(1.02);
-        text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
-      }
-
-      nav a::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          45deg,
-          transparent,
-          rgba(0, 255, 255, 0.1),
-          transparent
-        );
-        border-radius: 8px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: -1;
-      }
-
-      nav a:hover::before {
-        opacity: 1;
-      }
-
-      nav a::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--neon-blue),
-          transparent
-        );
-        bottom: -2px;
-        left: 50%;
-        transform: translateX(-50%);
-        transition: width 0.4s ease;
-        box-shadow: 0 0 10px var(--neon-blue);
-      }
-
-      nav a:hover::after {
-        width: 100%;
-      }
-
-      /* Enhanced Header Container */
-      header {
-        padding: 15px 0;
-        height: 70px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 999;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: linear-gradient(
-          180deg,
-          rgba(5, 13, 22, 0.95) 0%,
-          rgba(19, 38, 57, 0.9) 100%
-        );
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
-          0 1px 0 rgba(0, 255, 255, 0.1) inset;
-        transition: all 0.3s ease;
-      }
-
-      header::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--neon-blue),
-          transparent
-        );
-        opacity: 0.6;
-      }
-
-      .header-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        margin-left: 40px;
-        position: relative;
-        padding: 10px 15px;
-        border-radius: 12px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .header-logo:hover {
-        background: rgba(0, 255, 255, 0.05);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 255, 255, 0.1);
-      }
-
-      .header-logo img {
-        width: 85px;
-        height: 55px;
-        object-fit: cover;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        margin-right: 0;
-        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
-        border-radius: 8px;
-      }
-
-      .header-logo:hover img {
-        transform: scale(1.08) rotate(2deg);
-        filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
-      }
-
-      .header-logo h1 {
-        color: var(--text-color);
-        font-size: 32px;
-        font-weight: 700;
-        margin-left: -20px;
-        background: linear-gradient(135deg, var(--neon-blue), #ffffff);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-        transition: all 0.3s ease;
-        letter-spacing: -1px;
-      }
-
-      .header-logo:hover h1 {
-        transform: translateX(5px);
-        text-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
-      }
       /* Professional Table Styling */
       #hospital-container {
         margin: 30px auto;
@@ -431,74 +77,286 @@
         text-decoration: underline;
       }
 
+      /* Enhanced Form Styling */
+      .form-container {
+        margin: 30px auto;
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+      }
+
+      .form-group label {
+        display: block;
+        color: var(--neon-blue);
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+        letter-spacing: 0.5px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 18px 24px;
+        border: 2px solid rgba(0, 255, 255, 0.3);
+        border-radius: 15px;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 42, 58, 0.8) 0%,
+          rgba(19, 38, 57, 0.9) 100%
+        );
+        color: var(--text-color);
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--neon-blue);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.4),
+          0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        background: linear-gradient(
+          135deg,
+          rgba(26, 42, 58, 0.95) 0%,
+          rgba(19, 38, 57, 0.98) 100%
+        );
+        transform: translateY(-2px) scale(1.01);
+        color: #ffffff;
+      }
+
+      .form-control::placeholder {
+        color: rgba(224, 240, 255, 0.5);
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .form-control:focus::placeholder {
+        color: rgba(224, 240, 255, 0.7);
+      }
+
+      /* Enhanced Select Dropdown */
+      select.form-control {
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 42, 58, 0.8) 0%,
+          rgba(19, 38, 57, 0.9) 100%
+        );
+        padding-right: 50px;
+        position: relative;
+      }
+
+      select.form-control:focus {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 42, 58, 0.95) 0%,
+          rgba(19, 38, 57, 0.98) 100%
+        );
+      }
+
+      /* Custom Select Arrow */
+      .form-group {
+        position: relative;
+      }
+
+      .form-group::after {
+        content: "";
+        position: absolute;
+        top: 58px;
+        right: 18px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 8px solid var(--neon-blue);
+        pointer-events: none;
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .form-group:has(select:focus)::after {
+        border-top-color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      select.form-control option {
+        background: var(--navy-800);
+        color: var(--text-color);
+        padding: 12px;
+        font-weight: 500;
+      }
+
+      select.form-control option:checked {
+        background: var(--neon-blue);
+        color: var(--navy-900);
+      }
+
+      /* Enhanced Map Container */
+      #map {
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
+        border: 2px solid rgba(0, 255, 255, 0.3);
+        overflow: hidden;
+        margin: 20px auto;
+        transition: all 0.3s ease;
+      }
+
+      #map:hover {
+        box-shadow: 0 12px 35px rgba(0, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Enhanced Page Title */
+      .page-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 30px 0;
+        background: linear-gradient(135deg, var(--neon-blue), #ffffff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        font-weight: 700;
+      }
+
+      /* Enhanced Buttons */
+      .btn {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        border: none;
+        border-radius: 12px;
+        padding: 12px 25px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+        margin: 0 10px;
+      }
+
+      .btn:hover {
+        background: linear-gradient(135deg, #005f8a, #0096c7);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 119, 182, 0.4);
+      }
+
+      .btn:disabled {
+        background: linear-gradient(135deg, #666, #888);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* Container Adjustments */
+      .container {
+        margin: 90px auto 0; /* Adjusted for fixed header height */
+        padding: 20px;
+        max-width: 95%;
+      }
+
       /* Responsive Table */
       @media (max-width: 768px) {
+        .container {
+          margin-top: 80px;
+        }
+
+        .form-container {
+          margin: 20px 10px;
+          padding: 20px;
+        }
+
+        .form-control {
+          padding: 12px 16px;
+          font-size: 14px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
         table {
           font-size: 14px;
         }
+
         td img {
           width: 60px;
           height: 60px;
+        }
+
+        #map {
+          height: 300px !important;
+          width: 90% !important;
         }
       }
     </style>
   </head>
 
   <body>
-    <header>
-      <div class="header-logo">
-        <img src="../static/images/D.png" alt="Photo" />
-        <h1>ermaSense.ai</h1>
-      </div>
-      <nav>
-        <div class="hamburger" onclick="toggleMenu()">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <ul>
-          <li><a href="/">Predict</a></li>
-          <li><a href="/location">Search Dermatologists</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-        </ul>
-      </nav>
-    </header>
+    {% include 'header.html' %}
     <div class="container">
-      <br /><br />
-      <h1 class="text-center" style="font-size: 2rem; margin-top: 30px">
-        Find Nearby Dermatologists
-      </h1>
+      <h1 class="page-title">Find Nearby Dermatologists</h1>
+
       <div
         id="map"
-        style="height: 400px; width: 50%; margin: auto; margin-top: 20px"
+        style="height: 400px; width: 100%; margin: auto; margin-top: 20px"
       ></div>
 
-      <div class="form-group">
-        <label for="location">Enter Location</label>
-        <br /><br />
-        <input
-          type="text"
-          class="form-control"
-          id="autocomplete"
-          placeholder="Enter Location"
-        />
+      <div class="form-container">
+        <div class="form-group">
+          <label for="location">Enter Your Location</label>
+          <input
+            type="text"
+            class="form-control"
+            id="autocomplete"
+            placeholder="Type location or click on map..."
+          />
+          <small
+            style="
+              color: rgba(0, 255, 255, 0.7);
+              font-style: italic;
+              margin-top: 8px;
+              display: block;
+            "
+          >
+            Tip: Type to search OR click anywhere on the map to select location!
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="radius">Select Search Radius</label>
+          <select id="radius" class="form-control">
+            <option value="1000">1 km - Very Close</option>
+            <option value="2000">2 km - Walking Distance</option>
+            <option value="5000" selected>5 km - Short Drive</option>
+            <option value="10000">10 km - Medium Distance</option>
+            <option value="15000">15 km - Extended Area</option>
+            <option value="20000">20 km - Wide Search</option>
+            <option value="25000">25 km - City-wide</option>
+            <option value="50000">50 km - Regional Search</option>
+          </select>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px">
+          <button class="btn" id="searchBtn" onclick="triggerSearch()">
+            Search Dermatologists
+          </button>
+          <button class="btn" id="clearBtn" onclick="clearSelection()">
+            Clear Selection
+          </button>
+        </div>
       </div>
-      <br />
-      <div class="form-group">
-        <label for="radius">Select Search Radius:</label>
-        <br />
-        <select id="radius" class="form-control">
-          <option value="1000">1 km</option>
-          <option value="2000">2 km</option>
-          <option value="5000" selected>5 km</option>
-          <option value="10000">10 km</option>
-          <option value="15000">15 km</option>
-          <option value="20000">20 km</option>
-          <option value="25000">25 km</option>
-          <option value="50000">50 km</option>
-        </select>
-      </div>
-      <br /><br />
 
       <div id="hospital-container">
         <table class="table">
@@ -530,10 +388,13 @@
       defer
     ></script>
     <script>
-      let map, service, autocomplete;
+      let map, service, autocomplete, geocoder;
       let hospitals = [];
       let currentIndex = 0;
       const hospitalsPerPage = 5;
+      let selectedLocation = null;
+      let currentMarker = null;
+      let uniqueHospitals = new Set(); // To prevent duplicates
 
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
@@ -541,14 +402,31 @@
           zoom: 12,
         });
 
+        // Initialize geocoder for reverse geocoding
+        geocoder = new google.maps.Geocoder();
+
+        // Set up autocomplete
         autocomplete = new google.maps.places.Autocomplete(
           document.getElementById("autocomplete"),
           { types: ["geocode"] }
         );
 
-        autocomplete.addListener("place_changed", searchNearbyPlaces);
-        document.getElementById("radius").onchange = searchNearbyPlaces;
+        // Add map click listener
+        map.addListener("click", function (event) {
+          handleMapClick(event.latLng);
+        });
 
+        // Add autocomplete listener
+        autocomplete.addListener("place_changed", handleAutocompleteSelection);
+
+        // Add radius change listener
+        document.getElementById("radius").onchange = function () {
+          if (selectedLocation) {
+            triggerSearch();
+          }
+        };
+
+        // Set up pagination buttons
         document
           .getElementById("prevBtn")
           .addEventListener("click", () => showHospitals(-1));
@@ -557,39 +435,305 @@
           .addEventListener("click", () => showHospitals(1));
       }
 
-      function searchNearbyPlaces() {
-        document.querySelector("#places").innerHTML = "";
-        hospitals = [];
-        currentIndex = 0;
+      function handleMapClick(latLng) {
+        selectedLocation = {
+          lat: latLng.lat(),
+          lng: latLng.lng(),
+        };
 
-        var place = autocomplete.getPlace();
+        // Remove existing marker
+        if (currentMarker) {
+          currentMarker.setMap(null);
+        }
+
+        // Add new marker
+        currentMarker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: "Selected Location",
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+            scaledSize: new google.maps.Size(32, 32),
+          },
+          animation: google.maps.Animation.BOUNCE,
+        });
+
+        // Stop animation after 2 seconds
+        setTimeout(() => {
+          currentMarker.setAnimation(null);
+        }, 2000);
+
+        // Get address for clicked location and update input
+        geocoder.geocode({ location: latLng }, function (results, status) {
+          if (status === "OK" && results[0]) {
+            const address = results[0].formatted_address;
+            document.getElementById("autocomplete").value = address;
+            showLocationMessage("Location selected from map!", "success");
+          } else {
+            const coordinates = `${latLng.lat().toFixed(6)}, ${latLng
+              .lng()
+              .toFixed(6)}`;
+            document.getElementById(
+              "autocomplete"
+            ).value = `Custom Location (${coordinates})`;
+            showLocationMessage(
+              "Custom location selected from map!",
+              "success"
+            );
+          }
+        });
+
+        // Center map on selected location
+        map.setCenter(latLng);
+        map.setZoom(14);
+      }
+
+      function handleAutocompleteSelection() {
+        const place = autocomplete.getPlace();
         if (!place.geometry) {
-          alert("Please select a valid location from the list.");
+          showLocationMessage(
+            "Please select a valid location from the dropdown list.",
+            "error"
+          );
           return;
         }
 
-        let radius = document.getElementById("radius").value;
+        selectedLocation = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        };
+
+        // Remove existing marker
+        if (currentMarker) {
+          currentMarker.setMap(null);
+        }
+
+        // Add marker for autocomplete selection
+        currentMarker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: "Selected Location",
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            scaledSize: new google.maps.Size(32, 32),
+          },
+        });
+
         map.setCenter(place.geometry.location);
         map.setZoom(14);
 
+        showLocationMessage("Location selected from search!", "success");
+      }
+
+      function triggerSearch() {
+        // Check if location is selected either from map click or autocomplete
+        const inputValue = document.getElementById("autocomplete").value.trim();
+
+        if (!selectedLocation && !inputValue) {
+          showLocationMessage(
+            "Please select a location by searching or clicking on the map!",
+            "error"
+          );
+          return;
+        }
+
+        // If there's input value but no selectedLocation, try to geocode it
+        if (inputValue && !selectedLocation) {
+          geocoder.geocode({ address: inputValue }, function (results, status) {
+            if (status === "OK" && results[0]) {
+              selectedLocation = {
+                lat: results[0].geometry.location.lat(),
+                lng: results[0].geometry.location.lng(),
+              };
+              performSearch();
+            } else {
+              showLocationMessage(
+                "Could not find the entered location. Please try a different address.",
+                "error"
+              );
+            }
+          });
+          return;
+        }
+
+        performSearch();
+      }
+
+      function performSearch() {
+        // Clear previous results and reset duplicates tracker
+        document.querySelector("#places").innerHTML = "";
+        hospitals = [];
+        uniqueHospitals.clear();
+        currentIndex = 0;
+
+        let radius = document.getElementById("radius").value;
+
+        showLocationMessage("Searching for dermatologists...", "info");
+
         service = new google.maps.places.PlacesService(map);
+
+        // Single comprehensive search instead of multiple searches
         service.nearbySearch(
           {
-            location: place.geometry.location,
-            radius: radius,
-            keyword: "dermatologist",
+            location: new google.maps.LatLng(
+              selectedLocation.lat,
+              selectedLocation.lng
+            ),
+            radius: parseInt(radius),
+            type: "doctor",
+            keyword: "dermatologist skin doctor",
           },
-          callback
+          (results, status) => {
+            if (
+              status === google.maps.places.PlacesServiceStatus.OK &&
+              results
+            ) {
+              // Filter results to only include dermatology-related places
+              const filteredResults = results.filter((place) => {
+                const name = place.name.toLowerCase();
+                const types = place.types || [];
+                return (
+                  name.includes("dermat") ||
+                  name.includes("skin") ||
+                  name.includes("hair") ||
+                  types.includes("doctor") ||
+                  types.includes("health")
+                );
+              });
+
+              // Remove duplicates using place_id
+              filteredResults.forEach((place) => {
+                if (!uniqueHospitals.has(place.place_id)) {
+                  uniqueHospitals.add(place.place_id);
+                  hospitals.push(place);
+                }
+              });
+
+              callback(
+                hospitals,
+                hospitals.length > 0
+                  ? google.maps.places.PlacesServiceStatus.OK
+                  : google.maps.places.PlacesServiceStatus.ZERO_RESULTS
+              );
+            } else {
+              callback([], google.maps.places.PlacesServiceStatus.ZERO_RESULTS);
+            }
+          }
         );
       }
 
+      function clearSelection() {
+        selectedLocation = null;
+        document.getElementById("autocomplete").value = "";
+        document.querySelector("#places").innerHTML = "";
+        hospitals = [];
+        uniqueHospitals.clear();
+        currentIndex = 0;
+
+        if (currentMarker) {
+          currentMarker.setMap(null);
+          currentMarker = null;
+        }
+
+        // Reset pagination buttons
+        document.getElementById("prevBtn").disabled = true;
+        document.getElementById("nextBtn").disabled = true;
+
+        // Reset map to default location
+        map.setCenter({ lat: 28.6139, lng: 77.209 });
+        map.setZoom(12);
+
+        showLocationMessage(
+          "Selection cleared! You can now choose a new location.",
+          "success"
+        );
+      }
+
+      function showLocationMessage(message, type) {
+        // Remove existing message
+        const existingMessage = document.querySelector(".location-message");
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+
+        // Create new message element
+        const messageElement = document.createElement("div");
+        messageElement.className = "location-message";
+        messageElement.textContent = message;
+
+        // Style based on type
+        let backgroundColor, borderColor;
+        switch (type) {
+          case "success":
+            backgroundColor = "rgba(0, 255, 0, 0.1)";
+            borderColor = "#00ff00";
+            break;
+          case "error":
+            backgroundColor = "rgba(255, 0, 0, 0.1)";
+            borderColor = "#ff0000";
+            break;
+          case "info":
+            backgroundColor = "rgba(0, 255, 255, 0.1)";
+            borderColor = "#00ffff";
+            break;
+          default:
+            backgroundColor = "rgba(255, 255, 255, 0.1)";
+            borderColor = "#ffffff";
+        }
+
+        messageElement.style.cssText = `
+          background: ${backgroundColor};
+          border: 1px solid ${borderColor};
+          border-radius: 8px;
+          padding: 12px 20px;
+          margin: 15px auto;
+          max-width: 600px;
+          text-align: center;
+          color: ${borderColor};
+          font-weight: 500;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          animation: slideDown 0.3s ease;
+        `;
+
+        // Insert after form container
+        const formContainer = document.querySelector(".form-container");
+        formContainer.insertAdjacentElement("afterend", messageElement);
+
+        // Remove message after 4 seconds
+        setTimeout(() => {
+          if (messageElement.parentNode) {
+            messageElement.style.animation = "slideUp 0.3s ease";
+            setTimeout(() => {
+              if (messageElement.parentNode) {
+                messageElement.remove();
+              }
+            }, 300);
+          }
+        }, 4000);
+      }
+
       function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          hospitals = results;
+        if (
+          status === google.maps.places.PlacesServiceStatus.OK &&
+          results.length > 0
+        ) {
+          // Sort by rating (highest first) and then by name
+          hospitals.sort((a, b) => {
+            if (b.rating !== a.rating) {
+              return (b.rating || 0) - (a.rating || 0);
+            }
+            return (a.name || "").localeCompare(b.name || "");
+          });
+
           showHospitals(0);
+          showLocationMessage(
+            `Found ${results.length} unique dermatologists nearby!`,
+            "success"
+          );
         } else {
-          alert(
-            "No dermatologists found nearby. Try increasing the search radius."
+          showLocationMessage(
+            "No dermatologists found nearby. Try increasing the search radius or selecting a different location.",
+            "error"
           );
         }
       }
@@ -624,6 +768,20 @@
       }
 
       function createTableRow(place) {
+        // Double-check for duplicates before creating row
+        const existingRows = document.querySelectorAll("#places tr");
+        for (let row of existingRows) {
+          const existingName = row.cells[0]?.innerText;
+          const existingAddress = row.cells[3]?.innerText;
+          if (
+            existingName === place.name &&
+            existingAddress === (place.formatted_address || "Not available")
+          ) {
+            console.log(`Duplicate prevented: ${place.name}`);
+            return; // Don't create duplicate row
+          }
+        }
+
         let tableBody = document.querySelector("#places");
         let row = tableBody.insertRow();
 
@@ -633,18 +791,32 @@
           : "https://via.placeholder.com/150";
         row.insertCell(
           1
-        ).innerHTML = `<img width="100" height="100" src="${photoUrl}" alt="🚫No Photo"/>`;
+        ).innerHTML = `<img width="100" height="100" src="${photoUrl}" alt="No Photo"/>`;
         row.insertCell(2).innerText =
           place.formatted_phone_number || "Not available";
         row.insertCell(3).innerText =
           place.formatted_address || "Not available";
         row.insertCell(4).innerText = place.rating
-          ? place.rating + " ⭐"
+          ? place.rating + " stars"
           : "No rating";
         row.insertCell(5).innerHTML = place.website
           ? `<a href="${place.website}" target="_blank">Visit</a>`
           : "Not available";
       }
+
+      // Add CSS for animations
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(-20px); }
+        }
+      `;
+      document.head.appendChild(style);
     </script>
   </body>
 </html>
